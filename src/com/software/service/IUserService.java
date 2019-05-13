@@ -1,5 +1,7 @@
 package com.software.service;
 
+import java.util.List;
+
 import com.software.entity.User;
 
 /**
@@ -14,7 +16,7 @@ public interface IUserService {
 	 * @return 如果返回user不为空则为登录成功，反之不成功
 	 */
 	public User login(String userName);
-	
+	public List<User> userList();
 	public int register(User user);
 
 }

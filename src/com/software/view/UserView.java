@@ -4,37 +4,35 @@ import java.util.Scanner;
 
 public class UserView {
 	private static int type = 0;
-	public void userLoginView() {
+	public void functionView(long userID) {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("==================");
-		System.out.println("        用户                   ");
-		System.out.println("==================");
-		System.out.println("1.登陆，2.注册，3.退出，4.查询");
-		String choose = scanner.next();
-		switch (choose) {
-		case "1":
-			// 登陆
-			LoginView loginView = new LoginView();
-			loginView.login(type);
+		RentView rentView = new RentView();
+		QueryView queryView = new QueryView();
+		System.out.println("==================用户操作界面====================");
+		System.out.println("0.返回上一级");
+		System.out.println("1.租车订单");
+		System.out.println("2.查看汽车记录");
+		System.out.println("3.查看我的租车记录");
+		System.out.println("4.还车");
+		int key = scanner.nextInt();
+		switch (key) {
+		case 0:
+			new LoginView().login(type);
 			break;
-		case "2":
-			// 注册
-			new RegisterView().register();
+		case 1:
+			//租车
+			rentView.rentCarView(userID); 
 			break;
-		case "4":
-			// 注册
-			new QueryView().queryResult(type);
+		case 2:
+			queryView.queryCarView(type, userID);
 			break;
-		case "3":
-			// 退出
-			System.out.println("欢迎再次访问神船租车");
-			System.exit(0);
-
+		case 3:
+			queryView.queryRecordView(type, userID);
 			break;
-
 		default:
+			System.out.println("暂无此功能！！");
 			break;
 		}
+		functionView(userID);
 	}
-
 }

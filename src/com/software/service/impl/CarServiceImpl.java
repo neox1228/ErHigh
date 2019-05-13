@@ -13,22 +13,39 @@ public class CarServiceImpl implements ICarService {
 	public List<Car> inquireCar(int choose, int type, String condition) {
 		List<Car> carList = null;
 		CarDaoImpl carDaoImpl = new CarDaoImpl();
-		if (type == 0) {
-			try {
-				carList = carDaoImpl.getCarList(choose, 0, condition);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}else {
-			try {
-				carList = carDaoImpl.getCarList(choose, 1, condition);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		try {
+			carList = carDaoImpl.getCarList(choose, type, condition);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return carList;
+	}
+
+	@Override
+	public int update(Long id, int listNum, Object content) {
+		CarDaoImpl carDaoImpl = new CarDaoImpl();
+		int updateAll = -1;
+			try {
+				updateAll = carDaoImpl.updateAll(id, listNum, content);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return updateAll;
+	}
+
+	@Override
+	public int addVehicle(Car car) {
+		int result = -1;
+		CarDaoImpl carDaoImpl = new CarDaoImpl();
+		try {
+			result = carDaoImpl.addCar(car);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }

@@ -17,7 +17,7 @@ public class UserServiceImpl implements IUserService{
 			List<User> userList = new UserDaoImpl().getUser(userName);
 			
 			//根据返回值判断是否登陆为空
-			if (!userList.isEmpty()) {
+			if (userList.size()!=0) {
 				User user = userList.get(0);
 				return user;
 			}
@@ -42,6 +42,19 @@ public class UserServiceImpl implements IUserService{
 			e.printStackTrace();
 		}
 		return row;
+	}
+
+	@Override
+	public List<User> userList() {
+		List<User> userList = null;
+		UserDaoImpl userDaoImpl = new UserDaoImpl();
+		try {
+			userList = userDaoImpl.getUser(null);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return userList;
 	}
 	
 

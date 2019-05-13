@@ -7,5 +7,4 @@ import com.software.entity.Brand;
 
 public interface IBrandDao {
 	public List<Brand> getBrand() throws SQLException;
-
 }
